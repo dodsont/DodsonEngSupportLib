@@ -34,12 +34,14 @@ public class AppRater {
      * @param app_pname
      * @param name
      */
-    public static void appLaunched(Context mContext, String app_pname, String name) {
+    public static void appLaunched(Context mContext, String app_pname, String name, int launches) {
     	
     	app_name = name;
     	market_link = app_pname;
-    	
-    	
+
+        DodsonEng de = new DodsonEng(mContext,false);
+
+
         SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
         if (prefs.getBoolean("dontshowagain", false)) { 
         	return ; 
@@ -63,10 +65,12 @@ public class AppRater {
         }
         
         // Wait at least n days before opening
-        if (launch_count >= LAUNCHES_UNTIL_PROMPT) {
+        if (launch_count >= launches) {
             if (System.currentTimeMillis() >= date_firstLaunch + 
                     (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
-                showRateDialog(mContext, editor);
+                if (de.isNetworkAvailable()) {
+                    showRateDialog(mContext, editor);
+                }
             }
         }
         
