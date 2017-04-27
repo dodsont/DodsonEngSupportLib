@@ -7,6 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 /***
  * AppRater will create a prompt to ask the user to rate the app.
@@ -84,35 +88,32 @@ public class AppRater {
      */
     public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
 
-    	new AlertDialog.Builder(mContext)
-        //.setIcon(R.drawable.icon)
-        .setTitle("Rate " + app_name)
-        .setMessage("If you enjoy using " + app_name + ", please take a moment to rate it.\n\nThank you for your support! God Bless!")
-        .setPositiveButton("No Thanks", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    /* User clicked No Thanks so do some stuff */
-                	if (editor != null) {
-                        editor.putBoolean("dontshowagain_noThanks", true);
-                        editor.commit();
+        new MaterialDialog.Builder(mContext)
+                .title("Rate " + app_name)
+                .content("If you enjoy using " + app_name + ", please take a moment to rate it.\n\nThank you for your support! God Bless!")
+                .positiveText("No Thanks")
+                .neutralText("Remind Me Later")
+                .negativeText("Rate Now")
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (editor != null) {
+                            editor.putBoolean("dontshowagain_noThanks", true);
+                            editor.commit();
+                        }
                     }
-                }
-        })
-        .setNeutralButton("Remind Me Later", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    /* User clicked Remind Me Later so do some stuff */
-                }
-        })
-        .setNegativeButton("Rate Now", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    /* User clicked Rate Now so do some stuff */
-                	if (editor != null) {
-                        editor.putBoolean("dontshowagain", true);
-                        editor.commit();
+                })
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (editor != null) {
+                            editor.putBoolean("dontshowagain", true);
+                            editor.commit();
+                        }
+                        openMarket(mContext, market_link);
                     }
-                	openMarket(mContext, market_link);
-                }
-        })
-        .show();
+                })
+                .show();
     }
     
     /***

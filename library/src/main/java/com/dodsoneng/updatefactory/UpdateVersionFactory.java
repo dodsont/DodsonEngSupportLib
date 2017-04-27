@@ -10,7 +10,7 @@ public class UpdateVersionFactory {
 			
 		} else if (msgType.equals("notification")) {
 			
-			return new UpdateVersionNotify();
+			return null;//new UpdateVersionNotify();
 			
 		}
 		
