@@ -94,7 +94,7 @@ public class AppRater {
                 .positiveText("No Thanks")
                 .neutralText("Remind Me Later")
                 .negativeText("Rate Now")
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         if (editor != null) {
@@ -103,7 +103,7 @@ public class AppRater {
                         }
                     }
                 })
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         if (editor != null) {
