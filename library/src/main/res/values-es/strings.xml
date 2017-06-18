@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rating_beginning">Si te gusta usar </string>
+    <string name="rating_ending">, por favor tómate un momento para calificarlo.\n\n¡Gracias por tu apoyo! ¡Dios bendiga!</string>
+    <string name="rate">Tarifa </string>
+    <string name="rate_no">No, gracias</string>
+    <string name="rate_yes">Califica ahora</string>
+    <string name="rate_later">Recuérdame más tarde</string>
+
+</resources>

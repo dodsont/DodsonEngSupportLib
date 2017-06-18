@@ -1,9 +1,6 @@
 package com.dodsoneng.support;
 
-
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -89,11 +86,12 @@ public class AppRater {
     public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
 
         new MaterialDialog.Builder(mContext)
-                .title("Rate " + app_name)
-                .content("If you enjoy using " + app_name + ", please take a moment to rate it.\n\nThank you for your support! God Bless!")
-                .positiveText("No Thanks")
-                .neutralText("Remind Me Later")
-                .negativeText("Rate Now")
+                .title(mContext.getString(R.string.rate) + " " + app_name)
+                .content(mContext.getString(R.string.rating_beginning) + " " + app_name
+                        + mContext.getString(R.string.rating_ending))
+                .positiveText(mContext.getString(R.string.rate_no))
+                .neutralText(mContext.getString(R.string.rate_later))
+                .negativeText(mContext.getString(R.string.rate_yes))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

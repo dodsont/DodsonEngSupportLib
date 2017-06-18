@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="rating_beginning">If you enjoy using</string>
+    <string name="rating_ending">, please take a moment to rate it.\n\nThank you for your support! God Bless!</string>
+    <string name="rate">Rate </string>
+    <string name="rate_no">No Thanks</string>
+    <string name="rate_yes">Rate Now</string>
+    <string name="rate_later">Remind Me Later</string>
 
 </resources>
