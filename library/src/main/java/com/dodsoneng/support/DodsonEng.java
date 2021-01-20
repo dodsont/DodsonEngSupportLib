@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -50,9 +49,6 @@ public class DodsonEng {
 	
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
-
-		return ;
-		
     }
 	
 	/**
@@ -69,8 +65,6 @@ public class DodsonEng {
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
 		}
-		return ;
-		
     }
 	
 	/**
@@ -129,10 +123,9 @@ public class DodsonEng {
 		boolean isValid = false;
 
 		String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-		CharSequence inputStr = email;
 
 		Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(inputStr);
+		Matcher matcher = pattern.matcher(email);
 		if (matcher.matches()) {
 			isValid = true;
 		}
