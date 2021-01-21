@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+
+import androidx.annotation.NonNull;
 
 /***
  * AppRater will create a prompt to ask the user to rate the app.
@@ -23,7 +24,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
  */
 public class AppRater {
     private final static int DAYS_UNTIL_PROMPT = 0;
-    private final static int LAUNCHES_UNTIL_PROMPT = 4;
     static String app_name;
     static String market_link;
     
@@ -67,7 +67,7 @@ public class AppRater {
         
         // Wait at least n days before opening
         if (launch_count >= launches) {
-            if (System.currentTimeMillis() >= date_firstLaunch + 
+            if (System.currentTimeMillis() >= date_firstLaunch +
                     (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
                 if (de.isNetworkAvailable()) {
                     showRateDialog(mContext, editor);
@@ -123,14 +123,18 @@ public class AppRater {
      */
     public static String appMarket(Context mContext, String app_pname) {
     	String appMarket = "";
-    	String installer = mContext.getPackageManager().getInstallerPackageName(mContext.getPackageName());
-    	if (installer.equals("com.amazon.venezia")) {
-    		appMarket = "Amazon";
-    	} else if (installer.equals("com.android.vending")){
-    		appMarket = "Google";
-    	} else {
-    		appMarket = "Unknown";
-    	}
+    	String installer = mContext.getPackageManager().getInstallerPackageName(app_pname);
+    	if (installer != null) {
+            if (installer.equals("com.amazon.venezia")) {
+                appMarket = "Amazon";
+            } else if (installer.equals("com.android.vending")) {
+                appMarket = "Google";
+            } else {
+                appMarket = "Unknown";
+            }
+        }else {
+            appMarket = "Google";
+            }
     	
     	return appMarket;
     }
