@@ -9,6 +9,10 @@ android {
         minSdkVersion 17
         targetSdkVersion 29
     }
+    
+    lintOptions {
+        abortOnError false
+    }
 
     buildTypes {
         release {
